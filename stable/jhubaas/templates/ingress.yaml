@@ -25,6 +25,6 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - betif.jhub
+    - {{ .Values.hostname }}
     secretName: user-tls-secret
 {{- end }}
