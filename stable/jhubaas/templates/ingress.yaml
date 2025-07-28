@@ -1,0 +1,30 @@
+{{- if .Values.ingress -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jhubaas
+  annotations:
+    #cert-manager.io/cluster-issuer: letsencrypt-prod
+    #kubernetes.io/ingress.class: "nginx"
+    #acme.cert-manager.io/http01-edit-in-place: "true"
+    meta.helm.sh/release-name: jhub
+    meta.helm.sh/release-namespace: jhub
+    cert-manager.io/issuer: "jhub-self-issuer"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-public
+                port:
+                  name: http
+      host: {{ .Values.hostname }}
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - betif.jhub
+    secretName: user-tls-secret
+{{- end }}

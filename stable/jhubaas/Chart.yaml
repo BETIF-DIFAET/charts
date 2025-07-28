@@ -1,0 +1,21 @@
+annotations:
+  category: stable
+apiVersion: v1
+name: jhubaas
+version: 0.0.1
+appVersion: 0.11.1
+description: JHUBaaS Hub umbrella chart
+keywords:
+- jupyterhub
+icon: https://jupyter.org/assets/hublogo.svg
+dependencies:
+  - name: jupyterhub
+    version: 0.11.1
+    repository: https://jupyterhub.github.io/helm-chart
+maintainers:
+- name: Tommaso Diotalevi
+  email: tommaso.diotalevi@unibo.it
+- name: Marco Lorusso
+  email: marco.lorusso@cnaf.infn.it
+- name: Stefano Dal Pra
+  email: stefano.dalpra@cnaf.infn.it
