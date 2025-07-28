@@ -15,10 +15,6 @@ This Helm chart is a customization of the "[Zero to Jupyter on k8s](https://z2jh
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.crds.yaml
 ```
-* Ingress-Controller (`NGINX`):
-```bash
-helm install ingress-nginx oci://ghcr.io/nginxinc/charts/nginx-ingress --create-namespace --version 1.0.2 -n ingress-nginx
-```
 * Local-path (storage class):
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.24/deploy/local-path-storage.yaml
