@@ -11,7 +11,7 @@
 #
 
 ingress: true
-hostname: betif.jhub
+hostname: betif-difaet.jhub
 
 jupyterhub:
   ingress:
@@ -50,7 +50,7 @@ jupyterhub:
         storage: 1Gi
         storageClassName: local-path
     extraEnv:
-      OAUTH_CALLBACK_URL: https://betif.jhub/hub/oauth_callback
+      OAUTH_CALLBACK_URL: https://betif-difaet.jhub/hub/oauth_callback
       OAUTH_ENDPOINT: https://iam-et.cloud.cnaf.infn.it/
       OAUTH_GROUPS: /betif
       ADMIN_OAUTH_GROUPS: /betif_admin
