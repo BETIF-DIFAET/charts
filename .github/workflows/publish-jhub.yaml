@@ -32,5 +32,5 @@ jobs:
         outputs: "type=registry,push=true"
         tags: |
             ghcr.io/${{ steps.get_repo_owner.outputs.repo_owner }}/jhub:${{ env.RELEASE_VERSION }}
-        file: ./stable/jhub-aas/docker/Dockerfile
+        file: ./stable/jhubaas/docker/Dockerfile
         platforms: linux/amd64
