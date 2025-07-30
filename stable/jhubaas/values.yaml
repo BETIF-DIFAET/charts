@@ -33,8 +33,8 @@ jupyterhub:
   
   hub:
     image:
-      name: ghcr.io/tommasodiotalevi/jhub
-      tag: 'test5'
+      name: ghcr.io/betif-difaet/jhub
+      tag: 'v1.0.0'
     #args:
     #- jupyterhub
     #- --config
