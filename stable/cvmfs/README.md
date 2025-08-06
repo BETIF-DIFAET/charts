@@ -1,7 +1,7 @@
 # CVMFS Helm configuration
 
 > [!NOTE]
-> The chart is taken from [CVMFS-CSI](https://github.com/BETIF-DIFAET/cvmfs-csi/tree/release-2.0)
+> The chart is taken from CERN [CVMFS-CSI v2.0.0](https://github.com/BETIF-DIFAET/cvmfs-csi/tree/release-2.0)
 
 ## Installation guide
 
@@ -27,7 +27,7 @@ Edit the `./cvmfs/config.yaml` in order to customize the CVMFS configuration.
 ## Uninstall the CVMFS service
 
 > [!WARNING]
-> Before uninstalling the Helm package, delete first the `cvmfs-idler-daemonset` resource to avoid corrupting
+> Before uninstalling the Helm package, **delete first** the `cvmfs-idler-daemonset` resource to avoid corrupting
 the `cvmfs-idler` pods (causing them to go in Error state, for
 SIGKILL).
 
