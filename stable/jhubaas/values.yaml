@@ -352,3 +352,12 @@ jupyterhub:
       dynamic:
         storageClass: local-path
       homeMountPath: /opt/workspace/persistent-storage
+    extraVolumes:
+      - name: cvmfs
+        persistentVolumeClaim:
+        claimName: cvmfs-pvc  # You must create this PVC separately, or have dynamic provisioning enabled
+    extraVolumeMounts:
+      - name: cvmfs
+        mountPath: /cvmfs
+        mountPropagation: HostToContainer
+        readOnly: true  # likely appropriate for CVMFS
