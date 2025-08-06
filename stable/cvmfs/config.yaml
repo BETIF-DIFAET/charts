@@ -1,0 +1,12 @@
+cvmfsConfig:
+  default.local:
+    data:
+      default.local: |
+        CVMFS_USE_GEOAPI=yes
+        CVMFS_HTTP_PROXY=DIRECT
+  config.d:
+    data:
+      unpacked.cern.ch.conf: |
+        CVMFS_QUOTA_LIMIT=4000
+      sft.cern.ch.conf: |
+        CVMFS_QUOTA_LIMIT=4000

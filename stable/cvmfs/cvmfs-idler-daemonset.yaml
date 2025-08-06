@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cvmfs-idler-daemonset
+  namespace: jhub
+  labels:
+    app: cvmfs-idler-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: cvmfs-idler-daemonset
+  template:
+    metadata:
+      labels:
+        app: cvmfs-idler-daemonset
+    spec:
+      containers:
+      - name: idler
+        image: ghcr.io/betif-difaet/cvmfs-idler:betif-v0.0.4
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: REPO_LIST
+            value: sft.cern.ch,grid.cern.ch,unpacked.cern.ch
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: cvmfs
+          mountPath: /cvmfs
+          mountPropagation: HostToContainer
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+          type: Directory
+      - name: cvmfs
+        persistentVolumeClaim:
+          claimName: cvmfs-pvc
+      terminationGracePeriodSeconds: 1
+      restartPolicy: Always
