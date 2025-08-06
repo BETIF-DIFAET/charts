@@ -1,14 +1,14 @@
 # CVMFS Helm configuration
 
 > [!NOTE]
-> The chart is taken from CERN [CVMFS-CSI v2.0.0](https://github.com/BETIF-DIFAET/cvmfs-csi/tree/release-2.0)
+> The chart is taken from CERN's [CVMFS-CSI v2.0.0](https://github.com/BETIF-DIFAET/cvmfs-csi/tree/release-2.0)
 
 ## Installation guide
 
 ### Requirements (if not done already)
 
 ```bash
-git clone git@github.com:BETIF-DIFAET/charts.git
+git clone https://github.com/BETIF-DIFAET/charts.git
 ```
 
 ### Deploy the CVMFS service
