@@ -102,11 +102,9 @@ jupyterhub:
           response = subprocess.check_output(
               ['/srv/.init/dodas-IAMClientRec', server_host+"-jhub"], env=myenv)
           response_list = response.decode('utf-8').split("\n")
-          print("Eccomi")
           print(response_list)
           client_id = response_list[len(response_list)-3]
           client_secret = response_list[len(response_list)-2]
-          print("pippooooo")
           print(client_id)
           print(client_secret)
           cache_results = {
