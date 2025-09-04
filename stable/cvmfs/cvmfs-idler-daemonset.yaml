@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: idler
-        image: ghcr.io/betif-difaet/cvmfs-idler:betif-v0.0.6
+        image: ghcr.io/betif-difaet/cvmfs-idler:betif-v0.1.0
         imagePullPolicy: IfNotPresent
         env:
           - name: REPO_LIST
