@@ -15,13 +15,13 @@ git clone https://github.com/BETIF-DIFAET/charts.git
 
 ```bash
 git clone -b release-2.0 https://github.com/BETIF-DIFAET/cvmfs-csi.git
-helm install cvmfs ./cvmfs-csi/deployments/helm/cvmfs-csi -f ./cvmfs/config.yaml -n jhub
-kubectl create -f ./cvmfs/volume-storageclass-pvc.yaml
-kubectl create -f ./cvmfs/cvmfs-idler-daemonset.yaml
+helm install cvmfs ./cvmfs-csi/deployments/helm/cvmfs-csi -f ./charts/stable/cvmfs/config.yaml -n jhub
+kubectl create -f ./charts/stable/cvmfs/volume-storageclass-pvc.yaml
+kubectl create -f ./charts/stable/cvmfs/cvmfs-idler-daemonset.yaml
 ```
 
 ### Customize the deployment
-Edit the `./cvmfs/config.yaml` in order to customize the CVMFS configuration. 
+Edit the `./charts/stable/cvmfs/config.yaml` in order to customize the CVMFS configuration. 
 
 
 ## Uninstall the CVMFS service
