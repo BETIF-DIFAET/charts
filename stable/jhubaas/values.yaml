@@ -267,6 +267,12 @@ jupyterhub:
             <option value="16G">16GB</option>
             </select>
             <br>
+            <label for="gpu">Select if you want GPU acceleration:</label>
+            <select name="gpu" size="1">
+            <option value="N">No</option>
+            <option value="Y">Yes</option>
+            </select>
+            <br>
   
             """
   
@@ -294,18 +300,17 @@ jupyterhub:
                 options['cpu'] = formdata['cpu']
                 cpu = ''.join(formdata['cpu'])
                 self.cpu_guarantee = float(cpu_req_map[cpu])
-                self.cpu_limit = float(cpu)
-  
+
                 options['mem'] = formdata['mem']
                 memory = ''.join(formdata['mem'])
                 self.mem_guarantee = mem_req_map[memory]
                 self.mem_limit = memory
   
-                # options['gpu'] = formdata['gpu']
-                # use_gpu = True if ''.join(formdata['gpu'])=="Y" else False
-                # if use_gpu:
-                # self.extra_resource_guarantees = {"nvidia.com/gpu": "1"}
-                # self.extra_resource_limit = {"nvidia.com/gpu": "1"}
+                options['gpu'] = formdata['gpu']
+                use_gpu = True if ''.join(formdata['gpu'])=="Y" else False
+                if use_gpu:
+                  self.extra_resource_guarantees = {"nvidia.com/gpu": 1}
+                  self.extra_resource_limits = {"nvidia.com/gpu": 1}
                 return options
   
   
@@ -346,7 +351,8 @@ jupyterhub:
         enabled: false
     storage:
       dynamic:
-        storageClass: local-path
+        storageClass: nfs-client
+      capacity: 50Gi
       homeMountPath: /opt/workspace/persistent-storage
       extraVolumes:
         - name: cvmfs
