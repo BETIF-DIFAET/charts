@@ -15,8 +15,8 @@ git clone https://github.com/BETIF-DIFAET/charts.git
 
 ```bash
 kubectl create namespace gpu-operator
-kubectl create -f ./gpu-operator/time-slicing-config.yaml
-kubectl create -f ./gpu-operator/gpu-operator.yaml
+kubectl create -f ./charts/stable/gpu-operator/time-slicing-config.yaml
+kubectl create -f ./charts/stable/gpu-operator/gpu-operator.yaml
 ```
 
 ## Uninstall the CVMFS service
