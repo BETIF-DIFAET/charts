@@ -247,7 +247,7 @@ jupyterhub:
             <label for="stack">Select your desired image:</label>
             <input list="images" name="img">
             <datalist id="images">
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.1.4"> Almalinux9 CPU-only base image </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v0.1.4"> Almalinux9 CPU-only base image </option>
             <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.1.4"> Almalinux9 CPU-with-GPU base image </option>
             </datalist>
             <br>
