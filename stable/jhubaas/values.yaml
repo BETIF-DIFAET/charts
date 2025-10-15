@@ -253,7 +253,6 @@ jupyterhub:
             <br>
             <label for="cpu">Select your desired number of cores:</label>
             <select name="cpu" size="1">
-            <option value="1">1</option>
             <option value="2">2</option>
             <option value="4">4</option>
             <option value="8">8</option>
@@ -265,6 +264,7 @@ jupyterhub:
             <option value="4G">4GB</option>
             <option value="8G">8GB</option>
             <option value="16G">16GB</option>
+            <option value="32G">32GB</option>
             </select>
             <br>
             <label for="gpu">You want GPU acceleration:</label>
@@ -281,11 +281,11 @@ jupyterhub:
                     "2G": "1800M",
                     "4G": "3500M",
                     "8G": "6800M",
-                    "16G": "14G"
+                    "16G": "14G",
+                    "32G": "30G"
                 }
   
                 cpu_req_map = {
-                    "1": "0.8",
                     "2": "1.8",
                     "4": "3.5",
                     "8": "6.8"
@@ -308,6 +308,7 @@ jupyterhub:
   
                 options['gpu'] = formdata['gpu']
                 use_gpu = True if ''.join(formdata['gpu'])=="Y" else False
+                print("USEGPU: " + str(use_gpu))
                 if use_gpu:
                   self.extra_resource_guarantees = {"nvidia.com/gpu": 1}
                   self.extra_resource_limits = {"nvidia.com/gpu": 1}
