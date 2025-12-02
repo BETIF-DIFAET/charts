@@ -21,8 +21,7 @@ kubectl create -f ./charts/stable/cvmfs/cvmfs-idler-daemonset.yaml
 ```
 
 ### Customize the deployment
-Edit the `./charts/stable/cvmfs/config.yaml` in order to customize the CVMFS configuration. 
-
+Edit the `./charts/stable/cvmfs/config.yaml` in order to customize the CVMFS configuration.
 
 ## Uninstall the CVMFS service
 
@@ -35,4 +34,3 @@ SIGKILL).
 kubectl delete daemonset cvmfs-idler-daemonset -n jhub
 helm uninstall cvmfs -n jhub
 ```
-
