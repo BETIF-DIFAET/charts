@@ -14,6 +14,7 @@ cvmfsConfig:
         CVMFS_QUOTA_LIMIT=4000
         CVMFS_SERVER_URL="https://rgw.cloud.infn.it:443/cvmfs/@fqrn@"
         CVMFS_KEYS_DIR="/etc/cvmfs/config.d"
+        CVMFS_DEFAULT_DOMAIN="infn.it"
         X509_CERT_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
       unpacked.infn.it.pub: |
         -----BEGIN PUBLIC KEY-----
