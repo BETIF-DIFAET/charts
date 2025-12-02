@@ -20,7 +20,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: REPO_LIST
-            value: sft.cern.ch,grid.cern.ch,unpacked.cern.ch
+            value: sft.cern.ch,grid.cern.ch,unpacked.cern.ch,unpacked.infn.it
         volumeMounts:
         - name: varlog
           mountPath: /var/log
