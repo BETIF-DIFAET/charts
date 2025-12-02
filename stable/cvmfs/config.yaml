@@ -13,17 +13,15 @@ cvmfsConfig:
       unpacked.infn.it.conf: |
         CVMFS_QUOTA_LIMIT=4000
         CVMFS_SERVER_URL="https://rgw.cloud.infn.it:443/cvmfs/@fqrn@"
-        CVMFS_KEYS_DIR="/etc/cvmfs/keys/infn.it"
+        CVMFS_KEYS_DIR="/etc/cvmfs/config.d"
         X509_CERT_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
-  keys:
-      data:
-        infn.it/unpacked.infn.it.pub: |
-          -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnLQWROckeU2dkh+Cn9Xc
-          kduwvf0Y/+ZxO6PYiEq1RxZ3ERzyQTYvVkV0j1Wabi/D/rz/6ZOGrK6ptpjIeuGa
-          yDV/929vp7Ia2QtlIq9Lht1UvKG6MxjKOJp+3Y1fjQPPeXi3wiAneRo5vRndbLOL
-          l/TbUAifUJaeoI4G9B2XicXSZcGVWZgKTlw+igu63wGizM5fxNXh+7pCOb6LbpaA
-          qz12OO7zwJIWN66C5bxWPXpXdyRp/fbv3nv5M4keG5dCaU0Tm9vMZ73EIeoQCcI7
-          /OrvQT3pJNu2D+1hmx43yapcEbVzV4L9C9L4mxTwzN6/tS3lu46UAjdlQsIg989V
-          9QIDAQAB
-          -----END PUBLIC KEY-----
+      unpacked.infn.it.pub: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnLQWROckeU2dkh+Cn9Xc
+        kduwvf0Y/+ZxO6PYiEq1RxZ3ERzyQTYvVkV0j1Wabi/D/rz/6ZOGrK6ptpjIeuGa
+        yDV/929vp7Ia2QtlIq9Lht1UvKG6MxjKOJp+3Y1fjQPPeXi3wiAneRo5vRndbLOL
+        l/TbUAifUJaeoI4G9B2XicXSZcGVWZgKTlw+igu63wGizM5fxNXh+7pCOb6LbpaA
+        qz12OO7zwJIWN66C5bxWPXpXdyRp/fbv3nv5M4keG5dCaU0Tm9vMZ73EIeoQCcI7
+        /OrvQT3pJNu2D+1hmx43yapcEbVzV4L9C9L4mxTwzN6/tS3lu46UAjdlQsIg989V
+        9QIDAQAB
+        -----END PUBLIC KEY-----
