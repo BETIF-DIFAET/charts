@@ -13,8 +13,10 @@ cvmfsConfig:
       unpacked.infn.it.conf: |
         CVMFS_QUOTA_LIMIT=4000
         CVMFS_SERVER_URL="https://rgw.cloud.infn.it:443/cvmfs/@fqrn@"
-        CVMFS_PUBLIC_KEY="/etc/cvmfs/config.d/unpacked.infn.it.pub"
-        X509_CERT_BUNDLE="/etc/pki/tls/certs/ca-bundle.crt"
+        CVMFS_KEYS_DIR="/etc/cvmfs/keys/infn.it"
+        X509_CERT_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt
+  keys:
+    data:
       unpacked.infn.it.pub: |
         -----BEGIN PUBLIC KEY-----
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnLQWROckeU2dkh+Cn9Xc
