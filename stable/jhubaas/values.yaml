@@ -247,9 +247,9 @@ jupyterhub:
             <label for="stack">Select your desired image:</label>
             <input list="images" name="img">
             <datalist id="images">
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v0.1.6"> Almalinux9 CPU-only base image </option>
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.1.6"> Almalinux9 CPU-with-GPU base image </option>
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-with-root-v0.1.6"> Almalinux9 ROOT base image (CPU only) </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v0.1.8"> Almalinux9 CPU-only base image </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.1.8"> Almalinux9 CPU-with-GPU base image </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-with-root-v0.1.8"> Almalinux9 ROOT base image (CPU only) </option>
             </datalist>
             <br>
             <label for="cpu">Select your desired number of cores:</label>
@@ -261,7 +261,6 @@ jupyterhub:
             <br>
             <label for="mem">Select your desired memory size:</label>
             <select name="mem" size="1">
-            <option value="2G">2GB</option>
             <option value="4G">4GB</option>
             <option value="8G">8GB</option>
             <option value="16G">16GB</option>
@@ -279,7 +278,6 @@ jupyterhub:
   
             def options_from_form(self, formdata):
                 mem_req_map = {
-                    "2G": "1800M",
                     "4G": "3500M",
                     "8G": "6800M",
                     "16G": "14G",
