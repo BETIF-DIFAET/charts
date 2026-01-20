@@ -360,8 +360,14 @@ jupyterhub:
         - name: cvmfs
           persistentVolumeClaim:
             claimName: cvmfs-pvc  # You must create this PVC separately, or have dynamic provisioning enabled
+        - name: shared-data
+          persistentVolumeClaim:
+            claimName: jhub-shared-pvc
       extraVolumeMounts:
         - name: cvmfs
           mountPath: /cvmfs
           mountPropagation: HostToContainer
           readOnly: true  # likely appropriate for CVMFS
+        - name: shared-data
+          mountPath: /opt/workspace/shared
+          readOnly: false
