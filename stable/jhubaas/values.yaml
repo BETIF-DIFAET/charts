@@ -121,7 +121,6 @@ jupyterhub:
             def pre_spawn_start(self, user, spawner):
                 auth_state = yield user.get_auth_state()
                 import pprint
-                pprint.pprint(auth_state)
                 if not auth_state:
                     # user has no auth state
                     return
@@ -156,7 +155,7 @@ jupyterhub:
                     for gr in allowed_groups:
                       if gr in groups:
                         amIAllowed = True
-                        pprint.pprint(amIAllowed)
+                        pprint.pprint("Am I allowed:" + str(amIAllowed))
   
                     if not amIAllowed:
                       self.log.error(
@@ -176,9 +175,8 @@ jupyterhub:
         c.GenericOAuthenticator.userdata_url = iam_server.strip('/') + '/userinfo'
         c.GenericOAuthenticator.scope = [
             'openid', 'profile', 'email', 'address', 'offline_access',  'wlcg', 'wlcg.groups']
-        c.GenericOAuthenticator.username_key = "preferred_username"
+        c.GenericOAuthenticator.username_claim = "preferred_username"
   
-        c.Authenticator.manage_groups = True
         c.Authenticator.enable_auth_state = True
 
         c.GenericOAuthenticator.allowed_scopes = [
@@ -205,14 +203,15 @@ jupyterhub:
 
           groups = claims.get("wlcg.groups", []) or []
 
-          # Enforce that a user must be in /user to log in (optional, but matches your requirement)
+          # Enforce that a user must be in /user to log in
           if os.environ.get("OAUTH_GROUPS") not in groups:
               return None  # deny login
 
           # Elevate admin if /admin is present
           auth_model["admin"] = (os.environ.get("ADMIN_OAUTH_GROUPS") in groups)
 
-          return auth_model 
+          return auth_model
+
         c.Authenticator.post_auth_hook = set_admin_from_wlcg_groups
         
 
