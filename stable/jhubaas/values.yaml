@@ -34,7 +34,7 @@ jupyterhub:
   hub:
     image:
       name: ghcr.io/betif-difaet/jhub
-      tag: 'v1.0.0'
+      tag: 'v1.0.1'
     #args:
     #- jupyterhub
     #- --config
@@ -165,60 +165,6 @@ jupyterhub:
                       raise Exception(
                           "OAuth user not in the allowed groups %s" % allowed_groups)
   
-            async def authenticate(self, handler, data=None):
-              code = handler.get_argument("code")
-              http_client = self.http_client()
-  
-              params = dict(
-                  redirect_uri=self.get_callback_url(handler),
-                  code=code,
-                  grant_type='authorization_code',
-              )
-              params.update(self.extra_params)
-  
-              headers = self._get_headers()
-  
-              token_resp_json = await self._get_token(http_client, headers, params)
-  
-              user_data_resp_json = await self._get_user_data(http_client, token_resp_json)
-  
-              if callable(self.username_key):
-                  name = self.username_key(user_data_resp_json)
-              else:
-                  name = user_data_resp_json.get(self.username_key)
-              if not name:
-                  self.log.error(
-                      "OAuth user contains no key %s: %s", self.username_key, user_data_resp_json
-                  )
-                  return
-  
-              auth_state = self._create_auth_state(
-                  token_resp_json, user_data_resp_json)
-              import pprint
-              pprint.pprint(auth_state)
-  
-              import jwt
-              groups = jwt.decode(auth_state["access_token"], options={
-                                  "verify_signature": False, "verify_aud": False})["wlcg.groups"]
-  
-              pprint.pprint(groups)
-  
-              is_admin = False
-              if os.environ.get("ADMIN_OAUTH_GROUPS") in groups:
-                  self.log.info("%s : %s is in %s",
-                                (name, os.environ.get("ADMIN_OAUTH_GROUPS"), groups))
-                  is_admin = True
-              else:
-                  self.log.info(" %s is not in admin group ", name)
-  
-              return {
-                  'name': name,
-                  'admin': is_admin,
-                  # self._create_auth_state(token_resp_json, user_data_resp_json)
-                  'auth_state': auth_state
-              }
-  
-  
         c.JupyterHub.authenticator_class = EnvAuthenticator
         c.GenericOAuthenticator.oauth_callback_url = callback
   
@@ -232,7 +178,44 @@ jupyterhub:
             'openid', 'profile', 'email', 'address', 'offline_access',  'wlcg', 'wlcg.groups']
         c.GenericOAuthenticator.username_key = "preferred_username"
   
-        c.GenericOAuthenticator.enable_auth_state = True
+        c.Authenticator.manage_groups = True
+        c.Authenticator.enable_auth_state = True
+
+        c.GenericOAuthenticator.allowed_scopes = [
+          "wlcg.groups" #if that is what your IdP grants and you want to enforce it
+        ]
+
+        async def set_admin_from_wlcg_groups(authenticator, handler, auth_model):
+          import jwt
+          auth_state = auth_model.get("auth_state") or {}
+
+          # Most providers: token stored here when auth_state is enabled
+          token = auth_state.get("access_token")
+          if not token:
+              token = (auth_state.get("token_response") or {}).get("access_token")
+
+          if not token:
+              # If you can't access the token, you can't evaluate groups
+              return None  # deny login
+
+          claims = jwt.decode(
+              token,
+              options={"verify_signature": False, "verify_aud": False},
+          )
+
+          groups = claims.get("wlcg.groups", []) or []
+
+          # Enforce that a user must be in /user to log in (optional, but matches your requirement)
+          if os.environ.get("OAUTH_GROUPS") not in groups:
+              return None  # deny login
+
+          # Elevate admin if /admin is present
+          auth_model["admin"] = (os.environ.get("ADMIN_OAUTH_GROUPS") in groups)
+
+          return auth_model 
+        c.Authenticator.post_auth_hook = set_admin_from_wlcg_groups
+        
+
         if 'JUPYTERHUB_CRYPT_KEY' not in os.environ:
             warnings.warn(
                 "Need JUPYTERHUB_CRYPT_KEY env for persistent auth_state.\n"

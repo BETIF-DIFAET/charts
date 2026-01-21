@@ -2,15 +2,15 @@ annotations:
   category: stable
 apiVersion: v1
 name: jhubaas
-version: 0.0.1
-appVersion: 0.11.1
+version: 0.0.2
+appVersion: 3.3.8
 description: JHUBaaS Hub umbrella chart
 keywords:
 - jupyterhub
 icon: https://jupyter.org/assets/hublogo.svg
 dependencies:
   - name: jupyterhub
-    version: 0.11.1
+    version: 3.3.8
     repository: https://jupyterhub.github.io/helm-chart
 maintainers:
 - name: Tommaso Diotalevi
