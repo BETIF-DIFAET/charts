@@ -34,7 +34,7 @@ jupyterhub:
   hub:
     image:
       name: ghcr.io/betif-difaet/jhub
-      tag: 'v1.0.1'
+      tag: 'v1.0.2'
     #args:
     #- jupyterhub
     #- --config
