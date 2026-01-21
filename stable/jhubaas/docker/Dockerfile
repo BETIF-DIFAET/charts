@@ -1,5 +1,5 @@
 FROM ghcr.io/tommasodiotalevi/dodas-iam-client-rec:v0.0.1 as REGISTRATION
-FROM jupyterhub/k8s-hub:4.3.1
+FROM jupyterhub/k8s-hub:4.0.0
 
 USER root
 
