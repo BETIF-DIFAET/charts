@@ -148,8 +148,8 @@ jupyterhub:
                 if os.environ.get("OAUTH_GROUPS"):
                     spawner.environment['GROUPS'] = " ".join(groups)
                     allowed_groups = os.environ["OAUTH_GROUPS"].split(" ")
-                    pprint.pprint(groups)
-                    pprint.pprint(allowed_groups)
+                    pprint.pprint("The user belongs to:" + str(groups))
+                    pprint.pprint("Allowed groups are:" + str(allowed_groups))
                     self.log.info(groups)
                     self.log.info(allowed_groups)
                     for gr in allowed_groups:
