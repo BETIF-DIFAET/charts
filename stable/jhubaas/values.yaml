@@ -229,10 +229,11 @@ jupyterhub:
             <label for="stack">Select your desired image:</label>
             <input list="images" name="img">
             <datalist id="images">
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v0.2.3"> Alma9 CPU image </option>
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.2.3"> Alma9 CPU-and-GPU image </option>
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-with-root-v0.2.3"> Alma9 CPU image w/ROOT </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v0.3.0"> Alma9 CPU image </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v0.3.0"> Alma9 CPU-and-GPU image </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-with-root-v0.3.0"> Alma9 CPU image w/ROOT </option>
             </datalist>
+            <br>
             <br>
             <label for="cpu">Select your desired number of cores:</label>
             <select name="cpu" size="1">
