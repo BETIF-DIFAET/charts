@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+#if run with k8s v1.16-, replace the above line with
+#apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: device-plugin-daemonset
+  namespace: kube-system
+spec:
+#if run with k8s v1.16-, the following 3 lines are not required
+  selector:
+    matchLabels:
+      name: device-plugin
+  template:
+    metadata:
+      labels:
+        name: device-plugin
+    spec:
+      tolerations:
+      priorityClassName: "system-node-critical"
+      containers:
+      - image: public.ecr.aws/xilinx_dcg/k8s-device-plugin:1.2.0
+        name: device-plugin
+        env:
+        - name: U30NameConvention
+          value: CommonName
+        - name: U30AllocUnit
+          value: Card
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+        volumeMounts:
+          - name: device-plugin
+            mountPath: /var/lib/kubelet/device-plugins
+      volumes:
+        - name: device-plugin
+          hostPath:
+            path: /var/lib/kubelet/device-plugins
