@@ -293,6 +293,7 @@ jupyterhub:
             cpu = user_options.get("cpu", "2")
             mem = user_options.get("mem", "4G")
             gpu = user_options.get("gpu", "N")
+            fpga = user_options.get("fpga", "N")
 
             spawner.image = img
             spawner.cpu_guarantee = float(cpu_req_map[cpu])
@@ -311,7 +312,7 @@ jupyterhub:
             if use_gpu:
               spawner.extra_resource_guarantees = {"nvidia.com/gpu": 1}
               spawner.extra_resource_limits = {"nvidia.com/gpu": 1}
-            else if use_fpga:
+            elif use_fpga:
               spawner.extra_resource_guarantees = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
               spawner.extra_resource_limits = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
             else:
