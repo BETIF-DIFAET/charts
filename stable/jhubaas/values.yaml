@@ -306,6 +306,10 @@ jupyterhub:
             use_gpu = (gpu == "Y")
             use_fpga = (fpga == "Y")
 
+           if use_gpu and use_fpga:
+             raise ValueError("GPU and FPGA cannot both be selected")
+
+
             print("USEGPU: " + str(use_gpu))
             print("USEFPGA: " + str(use_fpga))
             
@@ -316,9 +320,10 @@ jupyterhub:
               spawner.extra_resource_guarantees = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
               spawner.extra_resource_limits = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
             else:
-              spawner.node_selector = {"nvidia.com/gpu.present": "false"}
-              spawner.node_selector = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0:false": "false"}
-  
+             spawner.node_selector = {"nvidia.com/gpu.present": "false",
+                                      "accelerator": "no"
+                                     }                                    
+
         c.JupyterHub.spawner_class = CustomSpawner
         c.Spawner.apply_user_options = apply_user_options
 
