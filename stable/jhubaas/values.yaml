@@ -306,8 +306,8 @@ jupyterhub:
             use_gpu = (gpu == "Y")
             use_fpga = (fpga == "Y")
 
-           if use_gpu and use_fpga:
-             raise ValueError("GPU and FPGA cannot both be selected")
+            if use_gpu and use_fpga:
+              raise ValueError("GPU and FPGA cannot both be selected")
 
 
             print("USEGPU: " + str(use_gpu))
