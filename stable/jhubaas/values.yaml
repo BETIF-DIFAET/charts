@@ -176,6 +176,9 @@ jupyterhub:
         c.GenericOAuthenticator.scope = [
             'openid', 'profile', 'email', 'address', 'offline_access',  'wlcg', 'wlcg.groups']
         c.GenericOAuthenticator.username_claim = "preferred_username"
+        c.GenericOAuthenticator.extra_authorize_params = {
+          "audience": "rucio"
+        }
   
         c.Authenticator.enable_auth_state = True
 
