@@ -138,6 +138,7 @@ jupyterhub:
                 spawner.environment['USERNAME'] = auth_state['oauth_user']['preferred_username']
                 spawner.environment['JUPYTERHUB_ACTIVITY_INTERVAL'] = "15"
                 spawner.environment['SSH_NAMESPACE'] = os.environ.get("SSH_NAMESPACE")
+                spawner.environment['RUCIO_CONFIG'] = "/opt/rucio/etc/rucio.cfg"
   
                 amIAllowed = False
   
@@ -232,7 +233,7 @@ jupyterhub:
             <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-v1.0.5"> Alma9 CPU image </option>
             <option value="ghcr.io/betif-difaet/jlab:betif-alma9-gpu-v1.0.5"> Alma9 CPU-and-GPU image </option>
             <option value="ghcr.io/betif-difaet/jlab:betif-alma9-cpu-with-root-v1.0.5"> Alma9 CPU image w/ROOT </option>
-            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-fpga-v1.0.3"> Alma9 CPU image with FPGA support </option>
+            <option value="ghcr.io/betif-difaet/jlab:betif-alma9-fpga-v1.0.5"> Alma9 CPU image with FPGA support </option>
             </datalist>
             <br>
             <br>
