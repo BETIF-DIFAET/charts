@@ -381,3 +381,11 @@ jupyterhub:
         - name: shared-data
           mountPath: /opt/workspace/shared
           readOnly: false
+    extraFiles:
+      rucio-ipython-kernel-config:
+        mountPath: /etc/ipython/ipython_kernel_config.py
+        stringData: |
+          c = get_config()
+          c.IPKernelApp.extensions = [
+              'rucio_jupyterlab.kernels.ipython'
+          ]
