@@ -21,10 +21,10 @@ spec:
                 name: proxy-public
                 port:
                   name: http
-      host: {{ .Values.hostname }}
-  ingressClassName: nginx
+      host: {{ .Values.hostname | quote }}
+  ingressClassName: traefik
   tls:
   - hosts:
-    - {{ .Values.hostname }}
+    - {{ .Values.hostname | quote }}
     secretName: user-tls-secret
 {{- end }}
