@@ -12,12 +12,12 @@ This Helm chart is a customization of the "[Zero to Jupyter on k8s](https://z2jh
 * Kubernetes cluster (see [Documentation](https://betif-difaet.readthedocs.io/en/latest/admin_guide.html#turning-the-vms-in-a-k8s-cluster));
 * Cert-Manager:
 ```bash
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.crds.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.20.4/cert-manager.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.20.4/cert-manager.crds.yaml
 ```
 * Local-path (storage class):
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.24/deploy/local-path-storage.yaml
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.37/deploy/local-path-storage.yaml
 ```
 
 ### Customize the deployment
