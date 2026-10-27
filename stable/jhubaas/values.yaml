@@ -261,7 +261,8 @@ jupyterhub:
             <label for="fpga">You want FPGA acceleration (In Development):</label>
             <select name="fpga" size="1">
             <option value="N">No</option>
-            <option value="Y">Yes</option>
+            <option value="55">U55c</option>
+            <option value="250">U250</option>
             </select>
             <br>
   
@@ -305,7 +306,8 @@ jupyterhub:
             print("SPAWN: " + str(img) + " IMAGE")
  
             use_gpu = (gpu == "Y")
-            use_fpga = (fpga == "Y")
+            use_fpga = (fpga == "55")
+            use_250 = (fpga == "250")
 
             if use_gpu and use_fpga:
               raise ValueError("GPU and FPGA cannot both be selected")
@@ -320,6 +322,9 @@ jupyterhub:
             elif use_fpga:
               spawner.extra_resource_guarantees = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
               spawner.extra_resource_limits = {"amd.com/xilinx_u55c_gen3x16_xdma_base_3-0": 1}
+            elif use_250:
+              spawner.extra_resource_guarantees = {"amd.com/xilinx_u250_gen3x16_xdma_shell_4_1-0": 1}
+              spawner.extra_resource_limits = {"amd.com/xilinx_u250_gen3x16_xdma_shell_4_1-0": 1}
             else:
              spawner.node_selector = {"nvidia.com/gpu.present": "false",
                                       "accelerator": "no"
